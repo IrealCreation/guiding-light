@@ -5,6 +5,8 @@ using UnityEngine;
 public class ColliderEffect : MonoBehaviour
 {
     public AudioSource SoundEffect;
+
+    public bool Knockback = false;
     
     // Start is called before the first frame update
     void Start()
@@ -18,8 +20,13 @@ public class ColliderEffect : MonoBehaviour
         
     }
 
-    public void CollidePlayer()
+    public void CollidePlayer(Player player)
     {
         SoundEffect.Play();
+
+        if (Knockback)
+        {
+            player.Knockback(transform.position);
+        }
     }
 }

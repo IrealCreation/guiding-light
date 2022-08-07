@@ -27,10 +27,17 @@ public class Player : MonoBehaviour
     {
         transform.Translate(movement * Speed);
     }
+
+    public void Knockback(Vector3 target)
+    {
+        Vector3 newPos = Vector3.MoveTowards(transform.position, target, -4f);
+        Debug.Log(newPos);
+        transform.position = newPos;
+    }
     
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("Collision!");
-        other.GetComponent<ColliderEffect>().CollidePlayer();
+        other.GetComponent<ColliderEffect>().CollidePlayer(this);
     }
 }
